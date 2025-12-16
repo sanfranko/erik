@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; // Нужен для метода Include
 using WebApplication1.Data;
-using WebApplication1.Models;
+using WebApplication1.Models; // Нужен для доступа к моделям (Product)
 
 namespace WebApplication1.Controllers
 {
@@ -14,19 +14,20 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
+        // Действие для отображения каталога товаров
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Products
-                                         .Include(p => p.Brand)
-                                         .Include(p => p.Category)
-                                         .ToListAsync();
-
-            return View(products);
+            // 1. Загружаем товары из БД. 
+            // Используем Include, чтобы подгрузить связанные таблицы (Brand, Category)
+            // Это нужно, если в представлении Index.cshtml используются эти поля.
+            var applicationDbContext = _context.Products
+                .Include(p => p.Brand)
+                .Include(p => p.Category);
+            
+            // 2. Возвращаем список товаров в представление (Views/Product/Index.cshtml)
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        public IActionResult Details(int id)
-        {
-            return View();
-        }
+        // Вы можете добавить сюда другие действия (Details, Create и т.д.)
     }
 }

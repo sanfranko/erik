@@ -566,3 +566,4 @@ C:\Users\31vv3\Desktop\ElektronniyDnevnik1 — копия\WebApplication1\obj\De
 C:\Users\31vv3\Desktop\ElektronniyDnevnik1 — копия\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 C:\Users\31vv3\Desktop\ElektronniyDnevnik1 — копия\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 C:\Users\31vv3\Desktop\ElektronniyDnevnik1 — копия\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
+C:\Users\31vv3\Desktop\ElektronniyDnevnik1 — копия\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json

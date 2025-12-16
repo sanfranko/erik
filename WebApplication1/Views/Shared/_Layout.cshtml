@@ -37,9 +37,8 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Каталог</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
-                                <i class="fas fa-shopping-cart"></i> Корзина (0) 
-                                </a>
+                            @* 🚨 ИСПРАВЛЕНО: Убран именованный аргумент 'name:' *@
+                            @await Component.InvokeAsync("CartSummary")
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Brand" asp-action="Index">Управление брендами</a>

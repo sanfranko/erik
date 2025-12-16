@@ -35,7 +35,7 @@
                     </p>
                     
                     @* Кнопка "В корзину" *@
-                    <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary btn-block">В корзину!</a>
+                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-primary btn-block">В корзину!</a>
                     @* Здесь будет кнопка "В корзину" *@
                     @* <a asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-success btn-block mt-2">В корзину</a> *@
                 </div>
