@@ -37,7 +37,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Каталог</a>
                         </li>
                         <li class="nav-item">
-                            @* 🚨 ИСПРАВЛЕНО: Убран именованный аргумент 'name:' *@
+                            @* Здесь компонент отобразит иконку, слово "Корзина" и цифру *@
                             @await Component.InvokeAsync("CartSummary")
                         </li>
                         <li class="nav-item">
