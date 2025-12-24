@@ -1,0 +1,24 @@
+@model WebApplication1.Models.Seller
+
+<h2>Редактировать продавца</h2>
+<hr />
+
+<form asp-action="EditSeller" method="post">
+    <input type="hidden" asp-for="SellerId" />
+
+    <div class="mb-3">
+        <label class="form-label">Название магазина</label>
+        <input asp-for="ShopName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Бренд</label>
+        <select asp-for="BrandId"
+                asp-items="@(new SelectList(ViewBag.Brands, "BrandId", "Name"))"
+                class="form-select">
+        </select>
+    </div>
+
+    <button class="btn btn-primary">Сохранить</button>
+    <a asp-action="Index" class="btn btn-secondary">Назад</a>
+</form>

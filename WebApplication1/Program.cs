@@ -6,24 +6,26 @@ using WebApplication1.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // =====================
-// DATABASE
+// DATABASE (SQL SERVER)
 // =====================
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite("DataSource=SmartphoneShop.db"));
-
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 
 // =====================
 // IDENTITY
 // =====================
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = true;
+    options.SignIn.RequireConfirmedAccount = false;
 })
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 // =====================
-// SESSION (ВАЖНО)
+// SESSION
 // =====================
 builder.Services.AddDistributedMemoryCache();
 
@@ -34,8 +36,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-// HttpContextAccessor можно оставить, но он НЕ обязателен,
-// так как ViewComponent и Controller уже имеют HttpContext
 builder.Services.AddHttpContextAccessor();
 
 // =====================
@@ -47,12 +47,13 @@ builder.Services.AddRazorPages();
 var app = builder.Build();
 
 // =====================
-// DB INIT / SEED
+// SEED (БЕЗ MIGRATE)
 // =====================
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    context.Database.Migrate();
+
+    // ❗ БАЗА УЖЕ ЕСТЬ — НИЧЕГО НЕ СОЗДАЁМ
 
     if (!context.Categories.Any())
     {
@@ -73,55 +74,12 @@ using (var scope = app.Services.CreateScope())
         );
         context.SaveChanges();
     }
-
-    if (!context.Products.Any())
-    {
-        var apple = context.Brands.First(b => b.Name == "Apple");
-        var samsung = context.Brands.First(b => b.Name == "Samsung");
-        var xiaomi = context.Brands.First(b => b.Name == "Xiaomi");
-
-        var flagship = context.Categories.First(c => c.Name == "Флагманы");
-        var midRange = context.Categories.First(c => c.Name == "Средний сегмент");
-
-        context.Products.AddRange(
-            new Product
-            {
-                Name = "iPhone 15 Pro Max",
-                Price = 120000,
-                BrandId = apple.BrandId,
-                CategoryId = flagship.CategoryId,
-                ImageUrl = "Apple.png"
-            },
-            new Product
-            {
-                Name = "Samsung Galaxy S24 Ultra",
-                Price = 115000,
-                BrandId = samsung.BrandId,
-                CategoryId = flagship.CategoryId,
-                ImageUrl = "Samsung.png"
-            },
-            new Product
-            {
-                Name = "Xiaomi 13T Pro",
-                Price = 65000,
-                BrandId = xiaomi.BrandId,
-                CategoryId = midRange.CategoryId,
-                ImageUrl = "Xiaomi.png"
-            }
-        );
-
-        context.SaveChanges();
-    }
 }
 
 // =====================
-// MIDDLEWARE PIPELINE
+// MIDDLEWARE
 // =====================
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
@@ -132,7 +90,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// 🔴 СЕССИЯ СТРОГО ЗДЕСЬ
 app.UseSession();
 
 app.UseAuthentication();

@@ -1,0 +1,56 @@
+@model List<WebApplication1.Models.Brand>
+
+<h1>Управление продавцами</h1>
+<hr />
+
+@foreach (var brand in Model)
+{
+    <h4>@brand.Name</h4>
+
+    <ul>
+        @foreach (var seller in brand.Sellers)
+        {
+            <li>
+                <!-- 🔹 ССЫЛКА НА ОТДЕЛЬНУЮ СТРАНИЦУ ПРОДАВЦА -->
+                <a asp-action="Seller"
+                   asp-route-id="@seller.SellerId">
+                    @seller.ShopName
+                </a>
+
+                <!-- 🔸 КНОПКА РЕДАКТИРОВАНИЯ -->
+                <a asp-action="EditSeller"
+                   asp-route-id="@seller.SellerId"
+                   class="btn btn-sm btn-warning ms-2">
+                    Редактировать
+                </a>
+
+                <!-- 🔴 УДАЛЕНИЕ -->
+                <form asp-action="DeleteSeller"
+                      method="post"
+                      style="display:inline;">
+                    <input type="hidden" name="id" value="@seller.SellerId" />
+                    <button class="btn btn-sm btn-danger ms-1">
+                        Удалить
+                    </button>
+                </form>
+            </li>
+        }
+    </ul>
+
+    <!-- ➕ ДОБАВЛЕНИЕ ПРОДАВЦА -->
+    <form asp-action="AddSeller" method="post" class="mb-4">
+        <input type="hidden" name="brandId" value="@brand.BrandId" />
+
+        <input type="text"
+               name="shopName"
+               class="form-control mb-2"
+               placeholder="Название магазина"
+               required />
+
+        <button class="btn btn-success">
+            Добавить продавца
+        </button>
+    </form>
+
+    <hr />
+}

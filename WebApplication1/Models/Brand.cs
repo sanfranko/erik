@@ -13,5 +13,7 @@ namespace WebApplication1.Models
         public string Country { get; set; } = string.Empty;
 
         public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+        public virtual ICollection<Seller> Sellers { get; set; } = new List<Seller>();
+
     }
 }

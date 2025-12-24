@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\31vv3\\Desktop\\ElektronniyDnevnik1 — копия\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Users\\31vv3\\Desktop\\Магазин телефонов\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\31vv3\\Desktop\\ElektronniyDnevnik1 — копия\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Users\\31vv3\\Desktop\\Магазин телефонов\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\31vv3\\Desktop\\ElektronniyDnevnik1 — копия\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Users\\31vv3\\Desktop\\Магазин телефонов\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Users\\31vv3\\Desktop\\ElektronniyDnevnik1 — копия\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "C:\\Users\\31vv3\\Desktop\\Магазин телефонов\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\31vv3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\31vv3\\Desktop\\ElektronniyDnevnik1 — копия\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Users\\31vv3\\Desktop\\Магазин телефонов\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\31vv3\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -50,17 +50,29 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",

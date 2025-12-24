@@ -1,0 +1,17 @@
+@model WebApplication1.Models.Seller
+
+<h2>@Model.ShopName</h2>
+<hr />
+
+<p><strong>Магазин:</strong> @Model.ShopName</p>
+<p><strong>Бренд:</strong> @Model.Brand?.Name</p>
+
+<a asp-action="EditSeller"
+   asp-route-id="@Model.SellerId"
+   class="btn btn-warning">
+   Редактировать
+</a>
+
+<a asp-action="Index" class="btn btn-secondary">
+   Назад
+</a>
